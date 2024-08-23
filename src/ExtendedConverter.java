@@ -6,10 +6,16 @@ public class ExtendedConverter extends Converter {
         super(globalHourlyRate, useGlobal);
     }
 
+    // Simpler constructor that defaults to using globalHourlyRate
+    public ExtendedConverter(double globalHourlyRate) {
+        super(globalHourlyRate);
+        this.useGlobal = true;
+    }
+
     public double specialProblemCost(Problem problem, TroubleshootingModel tModel) {
         if (problem.getCostFactors() == null) {
-            System.err.println("Error: This method only works with special problems.");
-            return 0.0;
+            throw new IllegalArgumentException("Error: This method only works with special problems.");
+
         }
 
         System.out.println("Calculating cost of a special problem");

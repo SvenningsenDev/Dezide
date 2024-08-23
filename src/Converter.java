@@ -7,16 +7,18 @@ public class Converter {
         this.useGlobal = useGlobal;
     }
 
+    // Simpler constructor that defaults to using globalHourlyRate
     public Converter(double globalHourlyRate) {
         this.globalHourlyRate = globalHourlyRate;
         this.useGlobal = true;
     }
 
+    // Calculates the price of fixing a simple problem based on only hours and hourly rate
     public double simpleProblemCost(Problem problem, TroubleshootingModel tModel) {
         if (problem.getCostFactors() != null) {
-            System.err.println("Error: This method only works with simple problems.");
-            return 0.0;
+            throw new IllegalArgumentException("Error: This method only works with simple problems.");
         }
+
         System.out.println("Calculating cost of a simple problem");
         double rate = getRate(tModel);
         double hours = problem.getEstimatedTimeHours();
@@ -26,7 +28,7 @@ public class Converter {
         return cost;
     }
 
-    // Here could be changed  to return a Problem and build it with the cost
+    // Calculates the amount of hours a problem took, based on the cost
     public double costToHours(double cost, TroubleshootingModel tModel) {
         System.out.println("Calculating cost to hours");
         double rate = getRate(tModel);

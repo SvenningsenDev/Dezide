@@ -6,12 +6,13 @@ import java.util.List;
 public class Problem {
     private double estimatedTimeHours;
     private List<CostFactor> costFactors;
-    // a cost variable could be added to build a Problem from a cost
 
+    // Constructor for creating a simple problem with only hours
     public Problem(double estimatedTimeHours) {
         this.estimatedTimeHours = estimatedTimeHours;
     }
 
+    // Constructor for creating a special problem with hours and a list of cost factors
     public Problem(double estimatedTimeHours, List<CostFactor> costFactors) {
         this.estimatedTimeHours = estimatedTimeHours;
         this.costFactors = costFactors;

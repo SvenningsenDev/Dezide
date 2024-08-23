@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 public class TroubleshootingModel {
-    private String id;
-    private double hourlyRate;
+    private final String id;
+    private final double hourlyRate;
 
     public TroubleshootingModel(String id, double hourlyRate) {
         this.id = id;
@@ -22,12 +22,13 @@ public class TroubleshootingModel {
         return hourlyRate;
     }
 
-    public Problem detectEasyProblem() {
-        Random random = new Random();
+    // Generates a simple problem with only a random estimated hours
+    public Problem detectSimpleProblem() {
         double randomEstimatedTime = getRandomHours();
         return new Problem(randomEstimatedTime);
     }
 
+    // Generates a special problem with a random amount of added CostFactors
     public Problem detectSpecialProblem() {
         double randomEstimatedTime = getRandomHours();
         List<CostFactor> allCostFactors = getCostFactors();
